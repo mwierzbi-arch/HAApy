@@ -25,4 +25,4 @@ COPY src ./src
 
 WORKDIR /src
 
-ENTRYPOINT [ "python", "-m", "haa.py" ]
+ENTRYPOINT [ "python", "haa.py" ]

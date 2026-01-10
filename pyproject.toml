@@ -9,7 +9,7 @@ readme = "README.md"
 python = "3.10.2"
 pandas = "^2.1.4"
 ffn = "^1.0.0"
-yfinance = "^0.2.33"
+yfinance = "^0.2.66"
 
 
 [build-system]

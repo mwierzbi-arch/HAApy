@@ -31,9 +31,9 @@ def predict_haa(end_date: datetime.date = datetime.date.today()):
     start_date=end_date-delta
 
     # Download the daily stock data
-    data = download(all_stocks, start=start_date, end=end_date)['Adj Close']
+    data = download(all_stocks, start=start_date, end=end_date)['Close']
     # Download today's intra day data, 1 minute interval. Keep only the last data point.
-    todays_data = download(all_stocks, period='1d', interval='1m')['Adj Close'].iloc[-1].to_frame().T
+    todays_data = download(all_stocks, period='1d', interval='1m')['Close'].iloc[-1].to_frame().T
 
     # If today_data contains more recent data points than the daily data, add today's intra day data to the dataset.
     # This allows taking today's data into account when calculating the momentum score.
@@ -73,6 +73,8 @@ def predict_haa(end_date: datetime.date = datetime.date.today()):
 
     print("\nMomentum scores:")
     print(score[-5:])
+
+    print(score.index.to_list())
 
     # Calculate if there's absolute momentum (If protectives, TIP, have positive a positive momentum score)
     absolute_momentum = score.apply(lambda x: True if min(x[protectives]) > 0 else False, axis=1).to_frame('absolute_momentum')
