@@ -74,8 +74,6 @@ def predict_haa(end_date: datetime.date = datetime.date.today()):
     print("\nMomentum scores:")
     print(score[-5:])
 
-    print(score.index.to_list())
-
     # Calculate if there's absolute momentum (If protectives, TIP, have positive a positive momentum score)
     absolute_momentum = score.apply(lambda x: True if min(x[protectives]) > 0 else False, axis=1).to_frame('absolute_momentum')
 
